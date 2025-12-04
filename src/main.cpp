@@ -84,15 +84,11 @@ int main(int, char **)
 
      glm::vec3 cubePositions[] = {
          glm::vec3(0.0f, 0.0f, 0.0f),
-         glm::vec3(2.0f, 5.0f, -15.0f),
-         glm::vec3(-1.5f, -2.2f, -2.5f),
-         glm::vec3(-3.8f, -2.0f, -12.3f),
-         glm::vec3(2.4f, -0.4f, -3.5f),
-         glm::vec3(-1.7f, 3.0f, -7.5f),
-         glm::vec3(1.3f, -2.0f, -2.5f),
-         glm::vec3(1.5f, 2.0f, -2.5f),
-         glm::vec3(1.5f, 0.2f, -1.5f),
-         glm::vec3(-1.3f, 1.0f, -1.5f)};
+         glm::vec3(-5.0f, 0.0f, 0.0f),
+         glm::vec3(5.0f, 0.0f, 0.0f),
+         glm::vec3(0.0f, 0.0f, -5.0f),
+         glm::vec3(0.0f, 0.0f, 5.0f)
+     };
 
      // Index Buffer
      /* GLuint indices[] =
@@ -192,6 +188,10 @@ int main(int, char **)
      glm::vec3 drLightAmbientIntensity = {0.05f, 0.05f, 0.05f};
      glm::vec3 drLightDiffuseIntensity = {0.4f, 0.4f, 0.4f};
      glm::vec3 drLightSpecularIntensity = {0.1f, 0.1f, 0.1f};
+     // Spot Light Variables
+     glm::vec3 sLightAmbientIntensity = {0.0f, 0.0f, 0.0f};
+     glm::vec3 srLightDiffuseIntensity = {1.0f, 1.0f, 1.0f};
+     glm::vec3 srLightSpecularIntensity = {1.0f, 1.1f, 1.1f};
 
      float shinyValue = 32.0f;
      float radius = 2.0f;
@@ -245,12 +245,24 @@ int main(int, char **)
           shaderProgram.SetToVec3("u_dirLight.ambient", &drLightAmbientIntensity[0]);
           shaderProgram.SetToVec3("u_dirLight.diffuse", &drLightDiffuseIntensity[0]);
           shaderProgram.SetToVec3("u_dirLight.specular", &drLightSpecularIntensity[0]);
+          // Spot Light Uniforms
+          shaderProgram.SetToVec3("u_spotLight.position", &camera.Position[0]);
+          shaderProgram.SetToVec3("u_spotLight.direction", &(camera.Position * camera.Orientation)[0]);
+          shaderProgram.SetToVec3("u_spotLight.ambient", &sLightAmbientIntensity[0]);
+          shaderProgram.SetToVec3("u_spotLight.diffuse", &srLightDiffuseIntensity[0]);
+          shaderProgram.SetToVec3("u_spotLight.specular", &srLightSpecularIntensity[0]);
+          shaderProgram.SetToFloat("u_spotLight.constant", 1.0f);
+          shaderProgram.SetToFloat("u_spotLight.linear", 0.09f);
+          shaderProgram.SetToFloat("u_spotLight.constant", 0.032f);
+          shaderProgram.SetToFloat("u_spotLight.innerCutOff", glm::cos(glm::radians(12.5f)));
+          shaderProgram.SetToFloat("u_spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
+          
 
 
 
           // Model matrix
           GLuint defaultModelLoc = glGetUniformLocation(shaderProgram.ID, "model");
-          for (unsigned int i = 0; i < 10; i++)
+          for (unsigned int i = 0; i < 5; i++)
           {
                glm::mat4 defaultModel = glm::mat4(1.0f);
                defaultModel = glm::translate(defaultModel, cubePositions[i]);
