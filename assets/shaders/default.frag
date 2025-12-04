@@ -2,8 +2,17 @@
 out vec4 FragColor;
 
 struct Material {
-    float objectColor;
+    vec3 objectColor;
     float shininess;
+};
+
+struct DirectionalLight
+{
+    vec3 direction;
+
+    vec3 ambient;
+    vec3 diffuse;
+    vec3 specular;
 };
 
 struct PointLight 
@@ -20,6 +29,7 @@ struct PointLight
 }; 
 
 uniform PointLight u_pointLight;
+uniform DirectionalLight u_dirLight;
 uniform Material u_mat;
 uniform vec3 u_viewPos;
 
@@ -27,15 +37,34 @@ in vec3 FragPos;
 in vec3 Normal;
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir);
+vec3 CalcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir);
 
 void main()
 {
    vec3 norm = normalize(Normal);
    vec3 viewDir = normalize(u_viewPos - FragPos);
-
-   vec3 result = CalcPointLight(u_pointLight, norm, FragPos, viewDir);
+   
+   vec3 result = CalcDirLight(u_dirLight, norm, viewDir);
+   result += CalcPointLight(u_pointLight, norm, FragPos, viewDir);
 
    FragColor = vec4(result, 1.0);
+}
+
+vec3 CalcDirLight(DirectionalLight light, vec3 normal, vec3 viewDir) 
+{
+    vec3 lightDir = normalize(-light.direction);
+
+    // diffuse shading
+    float diff = max(dot(normal, lightDir), 0.0);
+    // specular shading
+    vec3 reflectDir = reflect(-lightDir, normal);
+    float spec = pow(max(dot(viewDir, reflectDir), 0.0), u_mat.shininess);
+    // combine results
+    vec3 ambient = light.ambient * u_mat.objectColor;
+    vec3 diffuse = light.diffuse * diff * u_mat.objectColor;
+    vec3 specular = light.specular * spec;
+
+    return (ambient + diffuse + specular);
 }
 
 vec3 CalcPointLight(PointLight light, vec3 normal, vec3 fragPos, vec3 viewDir) 

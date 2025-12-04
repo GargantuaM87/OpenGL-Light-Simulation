@@ -187,6 +187,11 @@ int main(int, char **)
      glm::vec3 pLightAmbientIntensity = {0.05f, 0.05f, 0.05f};
      glm::vec3 pLightDiffuseIntensity = {0.8f, 0.8f, 0.8f};
      glm::vec3 pLightSpecularIntensity = {1.0f, 1.0f, 1.0f};
+     // Directional Light Variables
+     glm::vec3 drLightDirection = {-0.2f, -1.0f, -0.3f};
+     glm::vec3 drLightAmbientIntensity = {0.05f, 0.05f, 0.05f};
+     glm::vec3 drLightDiffuseIntensity = {0.4f, 0.4f, 0.4f};
+     glm::vec3 drLightSpecularIntensity = {0.1f, 0.1f, 0.1f};
 
      float shinyValue = 32.0f;
      float radius = 2.0f;
@@ -228,12 +233,20 @@ int main(int, char **)
           shaderProgram.SetToFloat("u_mat.shininess", shinyValue);
           shaderProgram.SetToVec3("u_pointLight.position", &lightPos[0]);
           shaderProgram.SetToVec3("u_viewPos", &camera.Position[0]);
+          // Point Light Uniforms
           shaderProgram.SetToVec3("u_pointLight.ambient", &pLightAmbientIntensity[0]);
           shaderProgram.SetToVec3("u_pointLight.diffuse", &pLightDiffuseIntensity[0]);
           shaderProgram.SetToVec3("u_pointLight.specular", &pLightSpecularIntensity[0]);
           shaderProgram.SetToFloat("u_pointLight.constant", 1.0f);
           shaderProgram.SetToFloat("u_pointLight.linear", 0.09f);
           shaderProgram.SetToFloat("u_pointLight.quadratic", 0.032f);
+          // Directional Light Uniforms
+          shaderProgram.SetToVec3("u_dirLight.direction", &drLightDirection[0]);
+          shaderProgram.SetToVec3("u_dirLight.ambient", &drLightAmbientIntensity[0]);
+          shaderProgram.SetToVec3("u_dirLight.diffuse", &drLightDiffuseIntensity[0]);
+          shaderProgram.SetToVec3("u_dirLight.specular", &drLightSpecularIntensity[0]);
+
+
 
           // Model matrix
           GLuint defaultModelLoc = glGetUniformLocation(shaderProgram.ID, "model");
@@ -290,12 +303,22 @@ int main(int, char **)
 
           ImGui::Separator();
 
+          ImGui::Text("Edit Directional Light");
+          ImGui::SliderFloat3("Direction", &drLightDirection[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Directional Ambient Intensity", &drLightAmbientIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Directional Diffuse Intensity", &drLightDiffuseIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Diretional Specular Intensity", &drLightSpecularIntensity[0], 0.0f, 1.0f, "%.2f");
+
+          ImGui::Separator();
+
           ImGui::Text("Edit Point Light");
           ImGui::SliderFloat3("Ambient Intensity", &pLightAmbientIntensity[0], 0.0f, 1.0f, "%.2f");
           ImGui::SliderFloat3("Diffuse Intensity", &pLightDiffuseIntensity[0], 0.0f, 1.0f, "%.2f");
           ImGui::SliderFloat3("Specular Intensity", &pLightSpecularIntensity[0], 0.0f, 1.0f, "%.2f");
           ImGui::SliderFloat("Shininess", &shinyValue, 0.0f, 64.0f, 0);
           ImGui::End();
+
+          
 
           ImGui::Render();
           ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
