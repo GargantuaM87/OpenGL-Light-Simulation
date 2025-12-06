@@ -190,8 +190,8 @@ int main(int, char **)
      glm::vec3 drLightSpecularIntensity = {0.1f, 0.1f, 0.1f};
      // Spot Light Variables
      glm::vec3 sLightAmbientIntensity = {0.0f, 0.0f, 0.0f};
-     glm::vec3 srLightDiffuseIntensity = {1.0f, 1.0f, 1.0f};
-     glm::vec3 srLightSpecularIntensity = {1.0f, 1.1f, 1.1f};
+     glm::vec3 sLightDiffuseIntensity = {1.0f, 1.0f, 1.0f};
+     glm::vec3 sLightSpecularIntensity = {1.0f, 1.1f, 1.1f};
 
      float shinyValue = 32.0f;
      float radius = 2.0f;
@@ -249,16 +249,14 @@ int main(int, char **)
           shaderProgram.SetToVec3("u_spotLight.position", &camera.Position[0]);
           shaderProgram.SetToVec3("u_spotLight.direction", &(camera.Position * camera.Orientation)[0]);
           shaderProgram.SetToVec3("u_spotLight.ambient", &sLightAmbientIntensity[0]);
-          shaderProgram.SetToVec3("u_spotLight.diffuse", &srLightDiffuseIntensity[0]);
-          shaderProgram.SetToVec3("u_spotLight.specular", &srLightSpecularIntensity[0]);
+          shaderProgram.SetToVec3("u_spotLight.diffuse", &sLightDiffuseIntensity[0]);
+          shaderProgram.SetToVec3("u_spotLight.specular", &sLightSpecularIntensity[0]);
           shaderProgram.SetToFloat("u_spotLight.constant", 1.0f);
           shaderProgram.SetToFloat("u_spotLight.linear", 0.09f);
           shaderProgram.SetToFloat("u_spotLight.constant", 0.032f);
           shaderProgram.SetToFloat("u_spotLight.innerCutOff", glm::cos(glm::radians(12.5f)));
           shaderProgram.SetToFloat("u_spotLight.outerCutOff", glm::cos(glm::radians(15.0f)));
           
-
-
 
           // Model matrix
           GLuint defaultModelLoc = glGetUniformLocation(shaderProgram.ID, "model");
@@ -310,8 +308,9 @@ int main(int, char **)
 
           ImGui::Separator();
 
-          ImGui::Text("Edit Colors");
+          ImGui::Text("Edit Material");
           ImGui::ColorEdit3("Object Color", &colorValue[0], 0);
+          ImGui::SliderFloat("Shininess", &shinyValue, 0.0f, 64.0f, 0);
 
           ImGui::Separator();
 
@@ -324,10 +323,19 @@ int main(int, char **)
           ImGui::Separator();
 
           ImGui::Text("Edit Point Light");
-          ImGui::SliderFloat3("Ambient Intensity", &pLightAmbientIntensity[0], 0.0f, 1.0f, "%.2f");
-          ImGui::SliderFloat3("Diffuse Intensity", &pLightDiffuseIntensity[0], 0.0f, 1.0f, "%.2f");
-          ImGui::SliderFloat3("Specular Intensity", &pLightSpecularIntensity[0], 0.0f, 1.0f, "%.2f");
-          ImGui::SliderFloat("Shininess", &shinyValue, 0.0f, 64.0f, 0);
+          ImGui::SliderFloat3("Point Ambient Intensity", &pLightAmbientIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Point Diffuse Intensity", &pLightDiffuseIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Point Specular Intensity", &pLightSpecularIntensity[0], 0.0f, 1.0f, "%.2f");
+
+          ImGui::Separator();
+
+          ImGui::Text("Edit Spot Light");
+          ImGui::SliderFloat3("Spot Ambient Intensity", &sLightAmbientIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Spot Diffuse Intensity", &sLightDiffuseIntensity[0], 0.0f, 1.0f, "%.2f");
+          ImGui::SliderFloat3("Spot Specular Intensity", &sLightSpecularIntensity[0], 0.0f, 1.0f, "%.2f");
+
+          
+          
           ImGui::End();
 
           
