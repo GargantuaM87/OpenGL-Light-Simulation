@@ -1,3 +1,22 @@
 # First OpenGL Project
 
-This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is extremely small. It just contains some floating cubes, an interactive camera, an ImGui for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics. Feel free to build this project and give it a try, and of course, if there is anything that piques your interest or anything you want to criticize, you can email me at ayindeabrams@gmail.com.
+This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is extremely small. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics. Feel free to build this project and give it a try. If there is anything that piques your interest or you'd like to criticize, please email me at ayindeabrams@gmail.com.
+
+## Required Software
+- Git
+- A C/C++ Compiler (I use GCC in this case)
+- CMake
+- GLFW
+- 
+For a stable install of GLFW on Ubuntu:
+```bash
+sudo apt update
+sudo apt install libglfw3-dev libglfw3
+```
+This will install the main library and development headers for GLFW.
+
+For installation on MacOS:
+```bash
+brew install glfw
+```
+And if you don't have the Homebrew package manager, then get it!
