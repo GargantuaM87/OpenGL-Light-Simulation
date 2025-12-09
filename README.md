@@ -27,4 +27,25 @@ This project uses:
 - GLAD
 - stb
 - Dear ImGui
-  
+
+## Installation Steps
+1. Clone this repository, then head inside its directory
+```bash
+git clone <wtv-the-url-is>
+cd ProjectName
+```
+2. Create a ./build directory
+```bash
+mkdir build
+cd build
+```
+3. Configure the project with CMake
+```bash
+cmake ..
+```
+
+4. Finally, build the project!
+```bash
+cmake --build .
+```
+Make sure the project is run on ./main.cpp
