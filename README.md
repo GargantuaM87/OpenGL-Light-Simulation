@@ -7,6 +7,7 @@ This is a simulation of Phong lighting in OpenGL, utilizing components such as a
 - A C/C++ Compiler (I use GCC in this case)
 - CMake
 - GLFW
+### Installing GLFW
 For a stable install of GLFW on Ubuntu:
 ```bash
 sudo apt update
