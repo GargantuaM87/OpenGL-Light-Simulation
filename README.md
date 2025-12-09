@@ -49,3 +49,7 @@ cmake ..
 cmake --build .
 ```
 Make sure the project is run on ./main.cpp
+
+## Screenshots
+<img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/f46fb0fa-e14e-46f5-a926-14f3f078dd90" />
+
