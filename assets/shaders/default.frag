@@ -27,7 +27,6 @@ struct PointLight
     float linear;
     float quadratic;
 }; 
-
 struct SpotLight 
 {
     vec3 position;
@@ -45,7 +44,8 @@ struct SpotLight
     vec3 specular;
 };
 
-uniform PointLight u_pointLight;
+#define NUM_POINT_LIGHTS 2
+uniform PointLight u_pointLights[NUM_POINT_LIGHTS];
 uniform DirectionalLight u_dirLight;
 uniform SpotLight u_spotLight;
 uniform Material u_mat;
@@ -64,7 +64,10 @@ void main()
    vec3 viewDir = normalize(u_viewPos - FragPos);
    
    vec3 result = CalcDirLight(u_dirLight, norm, viewDir);
-   result += CalcPointLight(u_pointLight, norm, FragPos, viewDir);
+   for(int i = 0; i < NUM_POINT_LIGHTS; i++) {
+         result += CalcPointLight(u_pointLights[i], norm, FragPos, viewDir);
+   }
+  
    result += CalcSpotLight(u_spotLight, norm, FragPos, viewDir);
 
    FragColor = vec4(result, 1.0);
@@ -141,7 +144,7 @@ vec3 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
     float distance = length(light.position - FragPos);
     float attenuation = 1.0 / (light.constant + light.linear * distance + light.quadratic * (distance * distance));
 
-    //ambient *= attenuation;
+    ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
 
