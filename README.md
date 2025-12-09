@@ -7,7 +7,6 @@ This is a simulation of Phong lighting in OpenGL, utilizing components such as a
 - A C/C++ Compiler (I use GCC in this case)
 - CMake
 - GLFW
-- 
 For a stable install of GLFW on Ubuntu:
 ```bash
 sudo apt update
@@ -15,8 +14,17 @@ sudo apt install libglfw3-dev libglfw3
 ```
 This will install the main library and development headers for GLFW.
 
-For installation on MacOS:
+For installation on macOS:
 ```bash
 brew install glfw
 ```
 And if you don't have the Homebrew package manager, then get it!
+
+## External Libraries
+This project uses:
+- GLFW
+- GLM
+- GLAD
+- stb
+- Dear ImGui
+  
