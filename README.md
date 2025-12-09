@@ -49,7 +49,8 @@ cmake ..
 ```bash
 cmake --build .
 ```
-Make sure the project is run on ./main.cpp
+Make sure the project is run on ./main.cpp from either the command line or whatever other method you can utilize
+**WARNING:** Everything might not build correctly. So it's important that you link the project to the appropiate path of glfw3 when you install it!
 
 ## Screenshots
 <img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/f46fb0fa-e14e-46f5-a926-14f3f078dd90" />
