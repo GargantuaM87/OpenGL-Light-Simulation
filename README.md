@@ -32,8 +32,8 @@ This project uses:
 ## Installation Steps
 1. Clone this repository, then head inside its directory
 ```bash
-git clone <wtv-the-url-is>
-cd ProjectName
+git clone https://github.com/GargantuaM87/OpenGL-Light-Simulation.git
+cd OpenGL-Light-Simulation
 ```
 2. Create a ./build directory
 ```bash
