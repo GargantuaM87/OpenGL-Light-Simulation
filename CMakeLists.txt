@@ -15,6 +15,8 @@ src/glad.c
 src/stb.cpp
 src/texture.cpp
 src/camera.cpp
+src/model.cpp
+src/mesh.cpp
 src/imgui/imgui_demo.cpp
 src/imgui/imgui_draw.cpp
 src/imgui/imgui_impl_glfw.cpp
@@ -30,6 +32,6 @@ target_include_directories(lightSim PRIVATE
 	${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_link_libraries(lightSim glfw OpenGL::GL)
+target_link_libraries(lightSim glfw assimp OpenGL::GL)
 
 
