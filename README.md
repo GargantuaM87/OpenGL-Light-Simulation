@@ -66,9 +66,8 @@ Make sure the project is run on ./main.cpp from either the command line or whate
 **WARNING:** Everything might not build correctly. So it's important that you link the project to the appropriate path of glfw3 when you install it!
 
 ## Screenshots
-<img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/f46fb0fa-e14e-46f5-a926-14f3f078dd90" />
-<img width="902" height="938" alt="Screenshot from 2025-12-09 11-23-42" src="https://github.com/user-attachments/assets/2e6afdf1-b4b0-43f5-9b4e-bb00d471f037" />
-<img width="902" height="938" alt="Screenshot from 2025-12-09 11-22-42" src="https://github.com/user-attachments/assets/56e5e5fb-d06a-4ab3-8b44-b53a9009921d" />
+<img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/e86445fb-ccd5-4100-9050-a3e85718f84e" />
+
 
 As you can see so far, there's not much to do. It is just a boring light simulation so far with a bunch of floating cubes. But this only serves as the base of the project. As I continue learning, I'll update this project accordingly with new stuff to showcase what I've learned!
 
