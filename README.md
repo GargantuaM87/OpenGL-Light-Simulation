@@ -1,6 +1,6 @@
 # First OpenGL Project
 
-This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is extremely small. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics. Feel free to build this project and give it a try. If there is anything that piques your interest or you'd like to criticize, please email me at ayindeabrams@gmail.com.
+This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is tiny. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics. Feel free to build this project and give it a try. If there is anything that piques your interest or you'd like to criticize, please email me at ayindeabrams@gmail.com.
 
 ## Required Software
 - Git
@@ -69,7 +69,7 @@ Make sure the project is run on ./main.cpp from either the command line or whate
 <img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/e86445fb-ccd5-4100-9050-a3e85718f84e" />
 
 
-As you can see so far, there's not much to do. It is just a boring light simulation so far with a bunch of floating cubes. But this only serves as the base of the project. As I continue learning, I'll update this project accordingly with new stuff to showcase what I've learned!
+As you can see so far, there's not much to do. As I continue learning, I'll update this project accordingly with new stuff to showcase what I've learned!
 
 
 
