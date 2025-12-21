@@ -7,6 +7,7 @@ This is a simulation of Phong lighting in OpenGL, utilizing components such as a
 - A C/C++ Compiler (I use GCC in this case)
 - CMake
 - GLFW
+- Assimp
 ### Installing GLFW
 For a stable install of GLFW on Ubuntu:
 ```bash
@@ -21,6 +22,17 @@ brew install glfw
 ```
 And if you don't have the Homebrew package manager, then get it!
 
+### Installing Assimp
+For command-line tools and the header files on Ubuntu:
+```bash
+sudo apt-get install libassimp-dev assimp-utils
+```
+
+For installation on macOS:
+```bash
+brew install assimp
+```
+
 ## External Libraries
 This project uses:
 - GLFW
@@ -28,6 +40,7 @@ This project uses:
 - GLAD
 - stb
 - Dear ImGui
+- Assimp
 
 ## Installation Steps
 1. Clone this repository, then head inside its directory
@@ -50,7 +63,7 @@ cmake ..
 cmake --build .
 ```
 Make sure the project is run on ./main.cpp from either the command line or whatever other method you can utilize
-**WARNING:** Everything might not build correctly. So it's important that you link the project to the appropiate path of glfw3 when you install it!
+**WARNING:** Everything might not build correctly. So it's important that you link the project to the appropriate path of glfw3 when you install it!
 
 ## Screenshots
 <img width="902" height="938" alt="image" src="https://github.com/user-attachments/assets/f46fb0fa-e14e-46f5-a926-14f3f078dd90" />
